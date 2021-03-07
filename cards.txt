@@ -1,0 +1,79 @@
+class Quote {
+  String text;
+  String author;
+
+  Quote({this.text,this.author}); // text boxs = parameters 
+
+}
+
+import 'package:flutter/material.dart';
+import 'quote.dart';
+void main() => runApp(MaterialApp(
+  home: NinjaCard(),
+));
+class NinjaCard extends StatefulWidget { // 
+  @override
+  _NinjaCardState createState() => _NinjaCardState();
+
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+
+  List<Quote> quotes=[
+    Quote(author:'oscar', text:'be your self'),
+    Quote(author:'oscar', text:'be your self'),
+    Quote(author:'oscar', text:'be your self'),
+  ];
+
+  Widget quoteTemplate (quote){
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Column(
+        children: <Widget> [
+          Text(
+            quote.text,
+            style: TextStyle(
+              fontSize:18,
+              color: Colors.yellow,
+            ),
+          ),
+          SizedBox(height: 6),
+          Text(
+            quote.author,
+            style: TextStyle(
+              fontSize:14,
+              color: Colors.yellow,
+            ),
+          ),
+          
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.green[900],
+      appBar: AppBar(
+        title: Text('Ninja ID Card'),
+        centerTitle: true,
+        backgroundColor: Colors.grey[850],
+        elevation: 0.0,
+      ),
+      
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0),
+        child: Column(
+          children: quotes.map( (quote) { // map function cicle on list and excute each items in list (loop) | // quote is parameter
+          
+          quoteTemplate(quote);
+
+          }).toList(), 
+          
+        ),
+      ),
+    );
+  }
+
+}
